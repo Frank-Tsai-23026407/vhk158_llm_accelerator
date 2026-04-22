@@ -1,0 +1,29 @@
+verilog xil_defaultlib --include "/tools/Xilinx/Vivado/2024.2/Vivado/2024.2/data/xilinx_vip/include" --include "../../../ipstatic/hdl/verilog" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_0/sim/bd_61a9_axis_dbg_stub_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_1/sim/bd_61a9_xlconstant_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_2/sim/bd_61a9_axis_ila_intf_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_3/sim/bd_61a9_axis_cap_ctrl_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_4/sim/bd_61a9_axis_mu0_0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_5/sim/bd_61a9_axis_mu1_0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_6/sim/bd_61a9_axis_mu2_0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_7/sim/bd_61a9_axis_mu3_0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_8/sim/bd_61a9_axis_dbg_sync_2_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_9/sim/bd_61a9_axis_dbg_sync_3_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_10/sim/bd_61a9_axis_dbg_sync_4_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_11/sim/bd_61a9_axis_dbg_sync_5_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_12/sim/bd_61a9_axis_dbg_sync_6_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_13/sim/bd_61a9_tc_axis_mu0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_14/sim/bd_61a9_cc_axis_mu0_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_15/sim/bd_61a9_cc_axis_mu1_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_16/sim/bd_61a9_cc_axis_mu2_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_17/sim/bd_61a9_cc_axis_mu3_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_18/sim/bd_61a9_axis_itct_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_19/sim/bd_61a9_axis_ila_pp_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/ip/ip_20/sim/bd_61a9_axis_mem_0.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/bd_0/sim/bd_61a9.v" \
+"../../../../vhk158_llm_accelerator.gen/sources_1/ip/ila_6/sim/ila_6.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

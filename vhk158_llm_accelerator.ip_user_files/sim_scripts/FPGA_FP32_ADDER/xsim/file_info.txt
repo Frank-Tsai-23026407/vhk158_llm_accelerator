@@ -1,0 +1,2 @@
+FPGA_FP32_ADDER.v,verilog,xil_defaultlib,../../../../vhk158_llm_accelerator.gen/sources_1/ip/FPGA_FP32_ADDER/sim/FPGA_FP32_ADDER.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

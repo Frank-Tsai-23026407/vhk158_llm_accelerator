@@ -1,0 +1,217 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xB3788CAA671C5AF1",
+      "device": "xcvh1582-vsva3697-2MP-e-S",
+      "gen_directory": "../../../../vhk158_llm_accelerator.gen/sources_1/bd/fifo_1",
+      "name": "fifo_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "None",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "emb_fifo_gen_0": ""
+    },
+    "ports": {
+      "wr_clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "fifo_1_wr_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "fifo_full": {
+        "direction": "O"
+      },
+      "wr_en": {
+        "direction": "I"
+      },
+      "wr_data": {
+        "direction": "I",
+        "left": "255",
+        "right": "0"
+      },
+      "fifo_almost_empty": {
+        "direction": "O"
+      },
+      "rd_data": {
+        "direction": "O",
+        "left": "511",
+        "right": "0"
+      },
+      "fifo_empty": {
+        "direction": "O"
+      },
+      "rst": {
+        "direction": "I"
+      },
+      "rd_en": {
+        "direction": "I"
+      },
+      "rd_clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "fifo_1_rd_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      }
+    },
+    "components": {
+      "emb_fifo_gen_0": {
+        "vlnv": "xilinx.com:ip:emb_fifo_gen:1.0",
+        "ip_revision": "6",
+        "xci_name": "fifo_1_emb_fifo_gen_0_0",
+        "xci_path": "ip/fifo_1_emb_fifo_gen_0_0/fifo_1_emb_fifo_gen_0_0.xci",
+        "inst_hier_path": "emb_fifo_gen_0",
+        "parameters": {
+          "CLOCK_DOMAIN": {
+            "value": "Independent_Clock"
+          },
+          "ENABLE_ALMOST_FULL": {
+            "value": "false"
+          },
+          "ENABLE_OVERFLOW": {
+            "value": "false"
+          },
+          "ENABLE_PROGRAMMABLE_EMPTY": {
+            "value": "false"
+          },
+          "ENABLE_PROGRAMMABLE_FULL": {
+            "value": "false"
+          },
+          "ENABLE_READ_DATA_COUNT": {
+            "value": "false"
+          },
+          "ENABLE_READ_DATA_VALID": {
+            "value": "false"
+          },
+          "ENABLE_UNDERFLOW": {
+            "value": "false"
+          },
+          "ENABLE_WRITE_ACK": {
+            "value": "false"
+          },
+          "ENABLE_WRITE_DATA_COUNT": {
+            "value": "false"
+          },
+          "FIFO_MEMORY_TYPE": {
+            "value": "BRAM"
+          },
+          "FIFO_READ_LATENCY": {
+            "value": "2"
+          },
+          "FIFO_WRITE_DEPTH": {
+            "value": "32"
+          },
+          "READ_DATA_WIDTH": {
+            "value": "512"
+          },
+          "WRITE_DATA_WIDTH": {
+            "value": "256"
+          }
+        }
+      }
+    },
+    "nets": {
+      "din_0_1": {
+        "ports": [
+          "wr_data",
+          "emb_fifo_gen_0/din"
+        ]
+      },
+      "emb_fifo_gen_0_almost_empty": {
+        "ports": [
+          "emb_fifo_gen_0/almost_empty",
+          "fifo_almost_empty"
+        ]
+      },
+      "emb_fifo_gen_0_dout": {
+        "ports": [
+          "emb_fifo_gen_0/dout",
+          "rd_data"
+        ]
+      },
+      "emb_fifo_gen_0_empty": {
+        "ports": [
+          "emb_fifo_gen_0/empty",
+          "fifo_empty"
+        ]
+      },
+      "emb_fifo_gen_0_full": {
+        "ports": [
+          "emb_fifo_gen_0/full",
+          "fifo_full"
+        ]
+      },
+      "rd_clk_0_1": {
+        "ports": [
+          "rd_clk",
+          "emb_fifo_gen_0/rd_clk"
+        ]
+      },
+      "rd_en_0_1": {
+        "ports": [
+          "rd_en",
+          "emb_fifo_gen_0/rd_en"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "rst",
+          "emb_fifo_gen_0/rst"
+        ]
+      },
+      "wr_clk_0_1": {
+        "ports": [
+          "wr_clk",
+          "emb_fifo_gen_0/wr_clk"
+        ]
+      },
+      "wr_en_0_1": {
+        "ports": [
+          "wr_en",
+          "emb_fifo_gen_0/wr_en"
+        ]
+      }
+    }
+  }
+}

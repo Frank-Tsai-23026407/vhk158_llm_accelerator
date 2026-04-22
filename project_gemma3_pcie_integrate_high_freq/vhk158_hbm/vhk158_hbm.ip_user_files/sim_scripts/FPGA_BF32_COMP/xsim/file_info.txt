@@ -1,2 +1,0 @@
-FPGA_BF32_COMP.v,verilog,xil_defaultlib,../../../../vhk158_hbm.gen/sources_1/ip/FPGA_BF32_COMP/sim/FPGA_BF32_COMP.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Verilator lint ────────────────────────────────────────────────────────
+  # Runs on GitHub-hosted runners (no Vivado required).
+  # Checks user RTL under sources_1/imports/imports/ for syntax errors.
+  lint-verilator:
+    name: Lint (Verilator)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Verilator
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y verilator
+
+      - name: Run lint
+        run: |
+          RTL=vhk158_llm_accelerator.srcs/sources_1/imports/imports
+          DEFINES="+incdir+$RTL/hw"
+
+          verilator --lint-only --sv --Wall --Wno-UNOPTFLAT --Wno-UNUSED \
+            $DEFINES \
+            $RTL/hw/define.v \
+            $RTL/hw/common/fifo.sv \
+            $RTL/hw/DMA/axi_ar_handshake_unit_1.v \
+            $RTL/hw/DMA/axi_ar_handshake_unit_2.v \
+            $RTL/hw/DMA/axi_aw_handshake_unit_1.v \
+            $RTL/hw/DMA/axi_aw_handshake_unit_2.v \
+            $RTL/hw/DMA/axi_r_handshake_unit.v \
+            $RTL/hw/DMA/axi_w_handshake_unit.v \
+            $RTL/hw/DMA/fifo_mux.v \
+            $RTL/hw/DMA/kv_cache_top.v \
+            $RTL/hw/DMA/main_ctrl.v \
+            $RTL/hw/DMA/dma_top.v \
+            $RTL/hw/DMA/DMA_wrapper.sv \
+            $RTL/design_ware/BF32_COMP.sv \
+            $RTL/MPU/bf16_int4_mul.sv \
+            $RTL/MPU/MFU.sv \
+            $RTL/MPU/SFU_M.sv \
+            $RTL/MPU/MPU.sv \
+            $RTL/MPU/MPU_wrapper.sv \
+            $RTL/VPU/VFU.sv \
+            $RTL/VPU/SFU_V.sv \
+            $RTL/VPU/VPU.sv \
+            $RTL/VPU/VPU_wrapper.sv \
+            2>&1 | tee verilator.log
+          grep -qE "^%Error" verilator.log && exit 1 || exit 0
+
+  # ── IP simulation (xsim) ─────────────────────────────────────────────────
+  # Requires a self-hosted runner with Vivado 2024.2 installed and
+  # XILINX_VIVADO set in the runner environment.
+  # Label your runner with: self-hosted, vivado
+  sim-all:
+    name: IP Simulation (xsim)
+    runs-on: [self-hosted, vivado]
+    needs: lint-verilator
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run all IP simulations
+        run: make sim-all SIM=xsim
+
+  # ── Synthesis check ───────────────────────────────────────────────────────
+  # Only runs on pushes to main or when triggered manually.
+  # Requires a self-hosted runner with Vivado 2024.2.
+  synth:
+    name: Synthesis
+    runs-on: [self-hosted, vivado]
+    needs: sim-all
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Synthesise
+        run: make synth
+
+      - name: Upload synthesis logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synth-logs
+          path: |
+            synth.log
+            synth.jou
+            vhk158_llm_accelerator.runs/synth_1/*.rpt
+
+  # ── Implementation & PDI (release-gated) ─────────────────────────────────
+  # Only runs when a version tag is pushed (e.g. v1.0.0).
+  # Produces the .pdi bitstream as a release artifact.
+  impl-pdi:
+    name: Implementation + PDI
+    runs-on: [self-hosted, vivado]
+    needs: synth
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run implementation and generate PDI
+        run: make pdi
+
+      - name: Upload PDI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdi-${{ github.ref_name }}
+          path: vhk158_llm_accelerator.runs/impl_1/*.pdi
+
+      - name: Upload implementation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: impl-logs-${{ github.ref_name }}
+          path: |
+            impl.log
+            pdi.log
+            vhk158_llm_accelerator.runs/impl_1/*.rpt

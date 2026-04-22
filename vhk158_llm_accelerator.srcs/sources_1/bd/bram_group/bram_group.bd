@@ -1,0 +1,155 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xAB410BDAE0B4816",
+      "device": "xcvh1582-vsva3697-2MP-e-S",
+      "gen_directory": "../../../../vhk158_llm_accelerator.gen/sources_1/bd/bram_group",
+      "name": "bram_group",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "None",
+      "tool_version": "2024.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "emb_mem_gen_0": ""
+    },
+    "ports": {
+      "addra": {
+        "direction": "I",
+        "left": "5",
+        "right": "0"
+      },
+      "wea": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "ena": {
+        "direction": "I"
+      },
+      "douta": {
+        "direction": "O",
+        "left": "1023",
+        "right": "0"
+      },
+      "dina": {
+        "direction": "I",
+        "left": "1023",
+        "right": "0"
+      },
+      "clka": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "bram_group_clka_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "regcea": {
+        "direction": "I"
+      }
+    },
+    "components": {
+      "emb_mem_gen_0": {
+        "vlnv": "xilinx.com:ip:emb_mem_gen:1.0",
+        "ip_revision": "10",
+        "xci_name": "bram_group_emb_mem_gen_0_0",
+        "xci_path": "ip/bram_group_emb_mem_gen_0_0/bram_group_emb_mem_gen_0_0.xci",
+        "inst_hier_path": "emb_mem_gen_0",
+        "parameters": {
+          "MEMORY_DEPTH": {
+            "value": "40"
+          },
+          "USE_MEMORY_BLOCK": {
+            "value": "Stand_Alone"
+          },
+          "WRITE_DATA_WIDTH_A": {
+            "value": "1024"
+          }
+        }
+      }
+    },
+    "nets": {
+      "addra_0_1": {
+        "ports": [
+          "addra",
+          "emb_mem_gen_0/addra"
+        ]
+      },
+      "clka_0_1": {
+        "ports": [
+          "clka",
+          "emb_mem_gen_0/clka"
+        ]
+      },
+      "dina_0_1": {
+        "ports": [
+          "dina",
+          "emb_mem_gen_0/dina"
+        ]
+      },
+      "emb_mem_gen_0_douta": {
+        "ports": [
+          "emb_mem_gen_0/douta",
+          "douta"
+        ]
+      },
+      "ena_0_1": {
+        "ports": [
+          "ena",
+          "emb_mem_gen_0/ena"
+        ]
+      },
+      "regcea_0_1": {
+        "ports": [
+          "regcea",
+          "emb_mem_gen_0/regcea"
+        ]
+      },
+      "rsta_0_1": {
+        "ports": [
+          "rst",
+          "emb_mem_gen_0/rsta"
+        ]
+      },
+      "wea_0_1": {
+        "ports": [
+          "wea",
+          "emb_mem_gen_0/wea"
+        ]
+      }
+    }
+  }
+}

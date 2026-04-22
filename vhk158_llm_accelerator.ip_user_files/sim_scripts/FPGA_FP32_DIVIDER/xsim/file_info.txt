@@ -1,0 +1,2 @@
+FPGA_FP32_DIVIDER.v,verilog,xil_defaultlib,../../../../vhk158_llm_accelerator.gen/sources_1/ip/FPGA_FP32_DIVIDER/sim/FPGA_FP32_DIVIDER.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

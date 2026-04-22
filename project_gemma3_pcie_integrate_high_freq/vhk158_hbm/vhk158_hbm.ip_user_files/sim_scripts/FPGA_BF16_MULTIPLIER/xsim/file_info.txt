@@ -1,2 +1,0 @@
-FPGA_BF16_MULTIPLIER.v,verilog,xil_defaultlib,../../../../vhk158_hbm.gen/sources_1/ip/FPGA_BF16_MULTIPLIER/sim/FPGA_BF16_MULTIPLIER.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v
