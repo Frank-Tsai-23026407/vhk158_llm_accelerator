@@ -1,0 +1,23 @@
+# Vivado logs and journals
+*.jou
+*.log
+*.str
+
+# Vivado tool directories
+.Xil/
+_x/
+
+# Build outputs
+*.run/
+*.gen/
+*.xclbin
+*.bit
+*.pdi
+*.dcp
+*.ltx
+
+# Project-specific generated directories
+vhk158_llm_accelerator.runs/
+vhk158_llm_accelerator.cache/
+vhk158_llm_accelerator.gen/
+vhk158_llm_accelerator.srcs/utils_1/

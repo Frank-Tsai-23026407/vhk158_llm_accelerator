@@ -60,6 +60,7 @@ lint:
 clean:
 	rm -f *.log *.jou
 	rm -rf $(PROJECT).runs $(PROJECT).cache $(PROJECT).gen $(PROJECT).hw/$(PROJECT).lpr.bak
+	rm -f vivado*
 	find $(SIM_DIR) -name "*.wdb" -o -name "*.pb" -o -name "xsim.dir" -type d | xargs rm -rf 2>/dev/null; true
 
 help:
