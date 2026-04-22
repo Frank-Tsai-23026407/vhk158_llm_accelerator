@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="68" Path="/home/zackyen/project_gemma3_pcie_integrate_high_freq/vhk158_llm_accelerator/vhk158_llm_accelerator.xpr">
+<Project Product="Vivado" Version="7" Minor="68" Path="vhk158_llm_accelerator.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="2c69e9b9081d44d78dae81c705d7681d"/>

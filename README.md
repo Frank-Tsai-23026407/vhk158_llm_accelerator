@@ -52,6 +52,38 @@ Floating-point arithmetic units used in the LLM compute pipeline:
 | `FPGA_BF32_COMP` | BF32 comparator |
 | `FPGA_FP16TO32` | FP16 → FP32 conversion |
 
+## Build & Simulation
+
+A `Makefile` wraps the common Vivado batch-mode flows. Requires `vivado` on `PATH`.
+
+| Target | Description |
+|--------|-------------|
+| `make synth` | Elaborate and synthesise RTL (`scripts/synth.tcl`) |
+| `make impl` | Place-and-route the synthesised netlist (`scripts/impl.tcl`) |
+| `make pdi` | Generate the Versal device image (`scripts/pdi.tcl`) |
+| `make sim IP=<name>` | Run one IP simulation — e.g. `make sim IP=FPGA_FP32_ADDER` |
+| `make sim IP=<name> SIM=questa` | Same, with a different simulator (`xsim` \| `questa` \| `vcs` \| `xcelium` \| `modelsim` \| `riviera`) |
+| `make sim-all` | Run all custom IP simulations sequentially with xsim |
+| `make lint` | Vivado syntax check on the project source fileset |
+| `make clean` | Remove logs, journals, and run outputs |
+
+## CI (GitHub Actions)
+
+Pipeline defined in [.github/workflows/ci.yml](.github/workflows/ci.yml). Jobs run in order, each gated on the previous:
+
+```
+push/PR → lint-verilator → sim-all → synth (main only) → impl-pdi (tags only)
+```
+
+| Job | Runner | Trigger | What it does |
+|-----|--------|---------|--------------|
+| **Lint (Verilator)** | `ubuntu-latest` | every push/PR | Installs Verilator, checks RTL under `sources_1/imports/imports/` for syntax errors |
+| **IP Simulation** | self-hosted `vivado` | after lint passes | Runs `make sim-all SIM=xsim` for all custom IP cores |
+| **Synthesis** | self-hosted `vivado` | push to `main` only | Runs `make synth`, uploads logs and synthesis reports |
+| **Implementation + PDI** | self-hosted `vivado` | version tag (`v*`) | Runs `make pdi`, uploads `.pdi` bitstream and impl reports as release artifacts |
+
+The Lint job requires no Vivado license and runs on GitHub-hosted runners. The Simulation, Synthesis, and Implementation jobs require a self-hosted runner labelled `self-hosted, vivado` with Vivado 2024.2 installed.
+
 ## Getting Started
 
 1. Install **Vivado 2024.2**
